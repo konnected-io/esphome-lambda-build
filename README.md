@@ -26,3 +26,12 @@ Not sure about all of these.
 * `PLATFORMIO_DISABLE_PROGRESSBAR`: `true`
 * `PYTHONEXEPATH`: `python3`
 * `PYTHONPATH`: `/opt/python`
+
+
+### Test
+Test with the following event JSON:
+```
+{
+  "config_url": "https://raw.githubusercontent.com/konnected-io/esphome-lambda-build/main/simple-test.yaml"
+}
+```
