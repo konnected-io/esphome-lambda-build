@@ -1,0 +1,46 @@
+esphome:
+  name: simple-test
+  friendly_name: Simple Test
+  build_path: /tmp/build
+  project:
+    name: konnected.simple-test
+    version: "1.0"
+
+wifi:
+  ap:
+  
+esp32:  
+  board: wesp32
+  framework:
+    type: esp-idf
+    version: recommended
+
+sensor:
+  - platform: uptime
+    name: Uptime
+    entity_category: diagnostic
+
+  - platform: wifi_signal
+    name: WiFi Signal RSSI
+    id: wifi_signal_db
+    entity_category: diagnostic
+
+  - platform: copy
+    source_id: wifi_signal_db
+    id: wifi_signal_pct
+    name: WiFi Signal %
+    filters:
+      - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
+    unit_of_measurement: "%"
+    entity_category: diagnostic
+
+text_sensor:
+  - platform: wifi_info
+    ip_address:
+      name: IP Address
+      entity_category: diagnostic
+  
+web_server:
+logger:
+api:
+ota:
